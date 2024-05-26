@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        *{
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: black;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-size: 100px;
+            color: white;
+            font-weight: bolder;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="res">...</h1>
+    <script>
+        let entrada = prompt('Periodo de estudo (M, T ou N)? ')
+        let res = document.querySelector('h1#res')
+
+        if (entrada == 'M' || entrada == 'm') {
+            res.innerHTML = `Bom dia!`
+        } else if (entrada == 'T' || entrada == 't') {
+            res.innerHTML = `Boa tarde!`
+        } else if (entrada == 'N' || entrada == 'n') {
+            res.innerHTML = `Boa noite!`
+        } else if (entrada == '') {
+            alert('ERRO!')
+        } else {
+            alert('ERRO!')
+        }
+    </script>
+</body>
+
+</html>

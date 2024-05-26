@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            font: normal 20pt arial;
+            background-color: white;
+        }
+
+        h1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            background-color: blue;
+            color: white;
+        }
+
+        input {
+            font: normal 15pt arial;
+            width: 50%;
+        }
+
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            background-color: blue;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Somando e subtraindo valores</h1>
+    <!--
+    <input type="submit" name="0" id="n0" value="0">
+    <input type="submit" name="1" id="n1" value="1">
+    <input type="submit" name="2" id="n2" value="2">
+    <input type="submit" name="3" id="n3" value="3">
+    <input type="submit" name="4" id="n4" value="4">
+    <input type="submit" name="5" id="n5" value="5">
+    <input type="submit" name="6" id="n6" value="6">
+    <input type="submit" name="7" id="n7" value="7">
+    <input type="submit" name="8" id="n8" value="8">
+    <input type="submit" name="9" id="n9" value="9">
+    <input type="submit" name="igual" id="fIgual" value="=">
+    <input type="submit" name="subtracao" id="fSub" value="-">
+    <input type="submit" name="Adicao" id="fAdic" value="+">
+    <input type="submit" name="divisao" id="fDiv" value="/">
+    <input type="submit" name="multiplicacao" id="fMult" value="*">
+    -->
+
+    <input type="number" name="n1" id="n1" placeholder="Digite o valor">
+    <input type="number" name="n2" id="n2" placeholder="Digite o valor">
+    <input type="button" value="Somar" onclick="somar()">
+    <input type="button" value="Subtrair" onclick="subtrair()">
+    <div id="res">Resultado</div>
+    <script>
+        function somar() {
+            //Armazenamento de var do formulario
+            var n1 = window.document.querySelector('input#n1')
+            var n2 = window.document.querySelector('input#n2')
+            var res = window.document.querySelector('div#res')
+
+            //Conversão
+            var cn1 = Number(n1.value)
+            var cn2 = Number(n2.value)
+
+            //Calculo
+            var soma = cn1 + cn2
+
+            res.innerHTML = `A soma de ${cn1} + ${cn2} é ${soma}`
+        }
+
+        function subtrair() {
+            //Armazenamento de var do formulario
+            var n1 = window.document.querySelector('input#n1')
+            var n2 = window.document.querySelector('input#n2')
+            var res = window.document.querySelector('div#res')
+
+            //Conversão
+            var cn1 = Number(n1.value)
+            var cn2 = Number(n2.value)
+            var sub = cn1 - cn2
+
+            res.innerHTML = `A subtração de ${cn1} - ${cn2} é ${sub}`
+        }
+    </script>
+</body>
+
+</html>

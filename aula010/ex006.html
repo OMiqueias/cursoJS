@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div#area {
+            font: normal 20px arial;
+            background-color: green;
+            color: white;
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="area">
+        Interaja...
+    </div>
+    <script>
+        var diva = window.document.querySelector('div#area')
+        //Essa lista reduz a poluicao visual no html, vinculando apenas pelo seletor.
+        diva.addEventListener('click',clicar)   
+        diva.addEventListener('mouseenter',entrar)
+        diva.addEventListener('mouseout',sair)
+
+        function clicar() {
+            diva.innerText = 'Clicou!'
+            diva.style.backgroundColor = 'red'
+        }
+
+        function entrar() {
+            diva.innerText = 'Entrou!'
+            diva.style.backgroundColor = 'green'
+        }
+
+        function sair() {
+            diva.innerText = 'Saiu!'
+            diva.style.backgroundColor = 'green'
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troca valores</title>
+</head>
+
+<body>
+    <form action="" method="post">
+        <label for="ival1">Digite um valor 1:</label>
+        <input type="number" name="val1" id="iVal1"> <br>
+        <label for="ival2">Digite um valor 2:</label>
+        <input type="number" name="val2" id="iVal2">
+        <input type="button" value="Executar" onclick="trocar()">
+    </form>
+
+    <script>
+        function trocar() {
+            var val1 = document.querySelector(      'input#iVal1').value
+            var val2 = document.querySelector('input#iVal2').value
+            
+            var aux = val1
+
+            val1 = val2
+
+            val2 = aux
+
+            alert(`Antes:\n Valor 1: ${document.querySelector('input#iVal1').value};\n Valor 2: ${document.querySelector('input#iVal2').value}.\n Depois:\n Valor 1: ${val1};\n Valor 2: ${val2}.`)
+        }
+    </script>
+</body>
+
+</html>

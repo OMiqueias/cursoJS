@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        nome = window.prompt('Digite aqui seu nome:')
+        n1 = window.prompt('Digite agora um número:')
+        n2 = window.prompt('Digite outro número:')
+
+        soma = Number(n1) + Number(n2)
+        subtracao = Number(n1) - Number(n2)
+        multi = Number(n1) * Number(n2)
+        divi = Number(n1) / Number(n2)
+
+        //n2Decima = n2.toFixed(2).replace('.',',')
+
+        document.write(`Seu nome é <strong>${nome}</strong>. <br/>`)
+        document.write(`A soma dos valores digitados por você é: <strong>${soma}</strong>. <br/>`)
+        document.write(`A subtação dos valores digitados por você é: <strong>${subtracao}</strong>. <br/>`)
+        document.write(`A multiplicação dos valores digitados por você é: <strong>${multi}</strong>. <br/>`)
+        document.write(`A divisão dos valores digitados é em inteiro o seguinte valor: <strong>${Number.parseInt(divi)}</strong>. <br/>`)
+        document.write(`A divisão dos valores digitados é em real o seguinte valor: <strong>${Number.parseFloat(divi)}</strong>. <br/>`)
+        //document.write(`Em valor monetario fica o seguinte o valor de n2: <strong>${n2Decima.toLocaleString('pt-BR', { Style: 'currency', currency: 'BRL' })}</strong>. <br/>`)
+        document.write(`Os valores digitados foram <strong>${n1}</strong> e <strong>${n2}</strong>.`)
+    </script>
+</body>
+
+</html>

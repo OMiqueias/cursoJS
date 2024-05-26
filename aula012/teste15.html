@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo - Salário</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: rgb(192, 192, 192);
+        }
+
+        header {
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(64, 214, 164);
+            padding: 1% 0%;
+            text-transform: uppercase;
+            color: white;
+        }
+
+        .formulario {
+            width: 25%;
+            margin-top: 1%;
+            padding: 1%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        .inputVal {
+            min-width: 100%;
+            border: none;
+            border-bottom: 1px solid gray;
+        }
+
+        .secBtn {
+            width: 100%;
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: row;
+        }
+
+        .inputBtn {
+            border: 1px solid gray;
+            border-radius: 0;
+            width: 100%;
+        }
+
+        .inputBtn:hover{
+            background-color: gray;
+            color: white;
+        }
+
+        #secRes {
+            width: 50%;
+            margin-top: 1%;
+            padding: 1%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        table {
+            width: 50%;
+            border: 1px solid black;
+        }
+
+        thead {
+            background-color: rgb(64, 214, 164);
+
+            color: white;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        td {
+            border-bottom: 1px solid rgb(84, 84, 84);
+        }
+
+        abbr{
+            text-decoration: none;
+        }
+
+        .vermelhorDesc{
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Cálculo - Folha de pagamento</h1>
+    </header>
+    <section class="formulario">
+        <form action="" method="post">
+            <label for="iHoras">Informe o total de horas trabalhadas:</label>
+            <input class="inputVal" type="number" name="totalHoras" id="iHoras"
+                placeholder="Informe aqui apenas números!" min="0">
+
+            <label for="iValHor">Informe o valor da sua hora trabalhada:</label>
+            <input class="inputVal" type="number" name="valorDeHora" id="iValHor"
+                placeholder="Informe aqui apenas números!" min="0">
+
+            <section id="secBtn">
+                <input class="inputBtn" type="button" value="Cálcular" onclick="calcular()">
+                <input class="inputBtn" type="reset" value="Limpar">
+            </section>
+        </form>
+    </section>
+    <section id="secRes">
+        <table>
+            <thead>
+                <tr>
+                    <td>Evento</td>
+                    <td>Valores (R$)</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Salário bruto:</td>
+                    <td id="iSalBruto"></td>
+                </tr>
+                <tr>
+                    <td> <abbr title="Desconto do IR.">IR</abbr> <span id="iSpanIr"></span>:</td>
+                    <td class="vermelhorDesc" id="iDesIr"></td>
+                </tr>
+                <tr>
+                    <td><abbr title="Desconto do INSS.">INSS</abbr> (10%):</td>
+                    <td class="vermelhorDesc" id="iDescInss"></td>
+                </tr>
+                <tr>
+                    <td><abbr title="Desconto do FGTS.">FGTS (11%)</abbr>:</td>
+                    <td class="vermelhorDesc" id="iDescFgts"></td>
+                </tr>
+                <tr>
+                    <td><abbr title="Desconto do Sindical.">Sindicato</abbr> (3%):</td>
+                    <td class="vermelhorDesc" id="iDescSind"></td>
+                </tr>
+                <tr>
+                    <td><abbr title="Total de desconto em sua folha de pagamento.">Total de descontos</abbr>:</td>
+                    <td class="vermelhorDesc" id="iTotalDec"></td>
+                </tr>
+                <tr>
+                    <td>Salário liquido:</td>
+                    <td id="iSalLiqu"></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <script>
+
+        function calcular() {
+            const totalHorasT = document.querySelector('input#iHoras')
+            const valHoraT = document.querySelector('input#iValHor')
+
+            //Conversão dos valores de entrada
+            let totalHorasTC = Number(totalHorasT.value)
+            let valHoraTC = Number(valHoraT.value)
+
+            //Calculo salário bruto
+            let salarioBruto = totalHorasTC * valHoraTC
+            let salarioBrutoFormatado = salarioBruto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+
+            //Calculo de descontos
+
+            descontoSind = salarioBruto * 0.03
+            descontoSindForm = descontoSind.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+
+            descontoFgts = salarioBruto * 0.11
+            descontoFgtsForm = descontoFgts.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+
+            descontoInss = salarioBruto * 0.1
+            descontoInssForm = descontoInss.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+
+            if (salarioBruto <= 900) {
+                descontoIr = salarioBruto*0
+            } else if (salarioBruto > 900 && salarioBruto <= 1500) {
+                descontoIr = salarioBruto * 0.05
+            } else if (salarioBruto > 1500 && salarioBruto <= 2500) {
+                descontoIr = salarioBruto * 0.1
+            } else if (salarioBruto > 2500) {
+                descontoIr = salarioBruto * 0.2
+            } else {
+                alert('Erro - Valor para desconto de IR não reconhecido!')
+            }
+
+            descontoIrForm = descontoIr.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+
+            if (salarioBruto <= 900) {
+                porcentagem = '(0%)'
+            } else if (salarioBruto > 900 && salarioBruto <= 1500) {
+                porcentagem = '(5%)'
+            } else if (salarioBruto > 1500 && salarioBruto <= 2500) {
+                porcentagem = '(10%)'
+            } else if (salarioBruto > 2500) {
+                porcentagem = '(20%)'
+            } else {
+                alert('Erro - Valor para desconto de IR não reconhecido!')
+            }
+
+            totalDescontos = descontoIr + descontoInss + descontoFgts + descontoSind
+            totalDescontosForm = totalDescontos.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
+
+            //Salário Liquido
+            salarioLiquido = salarioBruto - totalDescontos
+            salarioLiquidoForm = salarioLiquido.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
+
+            //Variaveir de saída
+            document.querySelector('td#iSalBruto').innerHTML = salarioBrutoFormatado
+            document.querySelector('span#iSpanIr').innerHTML = porcentagem
+            document.querySelector('td#iDesIr').innerHTML = descontoIrForm
+            document.querySelector('td#iDescInss').innerHTML = descontoInssForm
+            document.querySelector('td#iDescFgts').innerHTML = descontoFgtsForm
+            document.querySelector('td#iDescSind').innerHTML = descontoSindForm
+            document.querySelector('td#iTotalDec').innerHTML = totalDescontosForm
+            document.querySelector('td#iSalLiqu').innerHTML = salarioLiquidoForm
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triangulos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            height: 50%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            background-color: rgb(180, 180, 180);
+        }
+
+        h1 {
+            margin-top: 1%;
+            margin-bottom: 1%;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        input {
+            text-align: center;
+        }
+
+        section {
+            min-height: 50%;
+            width: 100vw;
+            margin-top: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: rgb(94, 175, 237);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Cálculadora - Fórmula de Bháskara</h1>
+    <form action="" method="post">
+        <label for="iValA">Informe o valor de A:</label>
+        <input type="number" name="iValA" id="iValA" value="0">
+
+        <label for="iValB">Informe o valor de B</label>
+        <input type="number" name="iValB" id="iValB" value="0">
+
+        <label for="iValC">Informe o valor de C</label>
+        <input type="number" name="iValC" id="iValC" value="0">
+
+        <input type="button" value="Analisar" onclick="calcular()">
+        <input type="reset" value="Limpar">
+    </form>
+    <section>
+        <h2>Resultado(s):</h2>
+        <div id="iResP"></div> <!--Positivo-->
+
+    </section>
+    <script>
+        function calcular() {
+            //Constantes - Entrada (Usuario)
+            const valorA = document.querySelector('input#iValA').value
+            const valorB = document.querySelector('input#iValB').value
+            const valorC = document.querySelector('input#iValC').value
+
+            //Variaveis - Saída (Resultados)
+            let iResP = document.querySelector('div#iResP')
+
+            //Calculo do Delta
+            let delta = (valorB*valorB)-(4*valorA*valorC)
+
+            if (delta > 0){
+                raiz1 = (- valorB + Math.sqrt(delta))/(2* valorA)
+                raiz2 = (- valorB - Math.sqrt(delta))/(2* valorA)
+
+                iResP.innerHTML = `Raiz 1: ${raiz1}<br/>Raiz 2: ${raiz2}.`
+            } else if (delta == 0){
+                raiz2 = (- valorB - Math.sqrt(delta))/(2* valorA)
+
+                iResP.innerHTML = `Raiz dupla: ${raiz2}.`
+            } else {
+                real = (- valorB)/(2* valorA)
+                img1 = Math.sqrt(- delta)/(2* valorA)
+                img2 = - Math.sqrt(- delta)/(2* valorA)
+
+                iResP.innerHTML = `Raiz 1: ${raiz1}<br/>Img 1: ${img1}<br/>Img 2: ${img2}.`
+            }
+
+        }
+    </script>
+</body>
+
+</html>

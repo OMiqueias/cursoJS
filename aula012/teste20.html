@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomia de materiais</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: rgb(128, 128, 246);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        section {
+            background-color: white;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            background-color: gray;
+            width: 100%;
+            color: white;
+            text-align: center;
+            text-transform: uppercase;
+            padding: 10px 0;
+        }
+
+        #iSecFor {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            margin-top: 10px;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .campoEntrada {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .button-group input {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-group input:hover {
+            background-color: #0056b3;
+        }
+
+        #iSecResTable {
+            max-width: 100%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ccc;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+            font-size: 10px;
+        }
+
+        th{
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .tdResu {
+            text-align: center;
+        }
+
+        thead {
+            background-color: #f9f9f9;
+            text-transform: uppercase;
+            font-size: 10px;
+        }
+
+        tfoot {
+            background-color: #f1f1f1;
+            text-transform: uppercase;
+            font-size: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="iSecH1">
+        <h1>Cálculo de autonomia</h1>
+    </section>
+    <section id="iSecFor">
+        <form action="" method="post">
+            <label for="iItem">Item:</label>
+            <input class="campoEntrada" type="text" name="item" id="iItem" placeholder="Informe o nome do item!">
+
+            <label for="iTotalInstalados">Total instalados:</label>
+            <input class="campoEntrada" type="number" name="instalados" id="iTotalInstalados" min="0"
+                placeholder="Informe apenas números!">
+
+            <label for="iRefDias">Referência de dias:</label>
+            <input class="campoEntrada" type="number" name="referenciaDeDias" id="iRefDias" min="0"
+                placeholder="Informe apenas números!" value="7">
+
+            <label for="iReserva">Quantidade em reserva não entregue:</label>
+            <input class="campoEntrada" type="number" name="reservasEmTrans" id="iReserva" min="0"
+                placeholder="Informe apenas números!" value="0">
+
+            <label for="iEstoque">Estoque (Almoxarifado):</label>
+            <input class="campoEntrada" type="number" name="estoqueAtual" id="iEstoque" min="0"
+                placeholder="Informe apenas números!">
+
+            <label for="iEstoqueCampo">Estoque (Campo):</label>
+            <input class="campoEntrada" type="number" name="estoqueAtualCampo" id="iEstoqueCampo" min="0"
+                placeholder="Informe apenas números!">
+
+            <div class="button-group">
+                <input type="button" value="Calcular" onclick="calcular()">
+                <input type="reset" value="Limpar">
+            </div>
+        </form>
+    </section>
+    <section id="iSecResTable">
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Estoque almoxarifado</th>
+                    <th>Estoque campo</th>
+                    <th>Estoque total (almoxarifado + Campo)</th>
+                    <th>Total instalado</th>
+                    <th>Referência (Dias)</th>
+                    <th>Média instalação (Dias)</th>
+                    <th>Autonomia (Dias)</th>
+                    <th>Quantidade pendente de recebimento (Reservas)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="iResItem"></td>
+                    <td class="tdResu" id="iResAlmox"></td>
+                    <td class="tdResu" id="iResCamp"></td>
+                    <td class="tdResu" id="iRespTotAlmCam"></td>
+                    <td class="tdResu" id="iResTotIns"></td>
+                    <td class="tdResu" id="iRefDias"></td>
+                    <td class="tdResu" id="iMediaInst"></td>
+                    <td class="tdResu" id="iResUto"></td>
+                    <td class="tdResu" id="iResReserva"></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td >Totais (Geral):</td>
+                    <td class="tdResu">-</td>
+                    <td class="tdResu">-</td>
+                    <td class="tdResu">-</td>
+                    <td class="tdResu">-</td>
+                    <td class="tdResu">-</td>
+                    <td class="tdResu">-</td>
+                    <td class="tdResu">-</td>
+                    <td class="tdResu">-</td>
+                </tr>
+            </tfoot>
+        </table>
+    </section>
+
+    <script>
+        function calcular() {
+
+            //Const entrada:
+            const item = document.querySelector('input#iItem').value
+            const totalInstalado = document.querySelector('input#iTotalInstalados').value
+            const refDias = document.querySelector('input#iRefDias').value
+            const reserva = document.querySelector('input#iReserva').value
+            const estoqueAlmoxarifado = document.querySelector('input#iEstoque').value
+            const estoqueCampo = document.querySelector('input#iEstoqueCampo').value
+
+            //Conversão
+            let reservaC = Number(reserva)
+            let totalInstaladoC = Number(totalInstalado)
+            let refDiasC = Number(refDias)
+            let estoqueAlmoxarifadoC = Number(estoqueAlmoxarifado)
+            let estoqueCampoC = Number(estoqueCampo)
+
+            //Cálculo:
+
+            let totalAlmoxCamp = estoqueAlmoxarifadoC + estoqueCampoC
+
+            let mediaInstalacao = totalInstaladoC / refDiasC
+
+            if (item == ""){
+                descricaoItem = `Item 1`
+            } else {
+                descricaoItem = item
+            }
+
+            if(totalAlmoxCamp == "" || mediaInstalacao == ""){
+                autonomia = 0
+                alert(`[ERRO - 01] - Todos os campos numéricos devem ser preenchidos!`)
+            } else {
+                autonomia = totalAlmoxCamp / mediaInstalacao
+            }
+
+            //Var saida:
+
+            let iResItem = document.querySelector('td#iResItem')
+            iResItem.innerHTML = `${descricaoItem}`
+
+            let iResAlmox = document.querySelector('td#iResAlmox')
+            iResAlmox.innerHTML = `${estoqueAlmoxarifadoC}`
+
+            let iResCamp = document.querySelector('td#iResCamp')
+            iResCamp.innerHTML = `${estoqueCampoC}`
+
+            let iRespTotAlmCam = document.querySelector('td#iRespTotAlmCam')
+            iRespTotAlmCam.innerHTML = `${totalAlmoxCamp}`
+
+            let iResTotIns = document.querySelector('td#iResTotIns')
+            iResTotIns.innerHTML = `${totalInstaladoC}`
+
+            let iRefDias = document.querySelector('td#iRefDias')
+            iRefDias.innerHTML = `${refDiasC}`
+
+            let iMediaInst = document.querySelector('td#iMediaInst')
+            iMediaInst.innerHTML = `${mediaInstalacao}`
+
+            let iResUto = document.querySelector('td#iResUto')
+            iResUto.innerHTML = `${autonomia}`
+
+            let iResReserva = document.querySelector('td#iResReserva')
+            iResReserva.innerHTML = `${reservaC}`
+        }
+
+        function saiu (){
+
+        }
+    </script>
+</body>
+
+</html>

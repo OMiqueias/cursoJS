@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triangulos</title>
+</head>
+
+<body>
+    <form action="" method="post">
+        <label for="iLado1">Lado 1</label>
+        <input type="number" name="lado1" id="iLado1" value="0">
+
+        <label for="iLado2">Lado 2</label>
+        <input type="number" name="lado2" id="iLado2" value="0">
+
+        <label for="iLado3">Lado 3</label>
+        <input type="number" name="lado3" id="iLado3" value="0">
+
+        <input type="button" value="Analisar" onclick="analisar()">
+        <input type="reset" value="Limpar">
+    </form>
+
+    <div id="iRes"></div>
+
+    <script>
+        function analisar() {
+            const lado1 = document.querySelector('input#iLado1').value
+            const lado2 = document.querySelector('input#iLado2').value
+            const lado3 = document.querySelector('input#iLado3').value
+
+            let iRes = document.querySelector('div#iRes')
+
+            if (lado1 == lado2 && lado2 == lado3) {
+                iRes.innerHTML = `É um Triângulo Equilátero.`
+            } else if (lado1 == lado2 || lado1 == lado3 || lado2 == lado3) {
+                iRes.innerHTML = `É um Triângulo Isósceles.`
+            } else if (lado1 != lado2 && lado1 != lado3 && lado2 != lado3){
+                iRes.innerHTML = `É um Triângulo Escaleno.`
+            } else if (lado1 == "" || lado2 == "" || lado3 == ""){
+                iRes.innerHTML = `[ERRO] - NE.`
+            }else {
+                iRes.innerHTML = `[ERRO] - NE.`
+            }
+        }
+    </script>
+</body>
+
+</html>

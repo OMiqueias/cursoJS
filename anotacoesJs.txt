@@ -1,0 +1,47 @@
+Converter string para number:
+
+Number.parseInt(n1) <- Converte a entrada ou saída em inteiro.
+Number.parseFloat(n1) <- Converte a entrada ou saída em real (Flutuante).
+Number(n1) <- Permiti que o JS escolha qual formato é mais apropriado (Inteiro ou Real).
+
+Converter de number para string:
+
+String(n1) <- De numero para string com o elemento dentro do parenteses.
+n.toString() <- De numero para string com o elemento antes da ação.
+
+Concatenação de texto:
+
+var S = 'JavaScript'
+'Eu estou apendendo S'	//Não faz interpolação.
+'Eu estou apendendo'+ S //Usa concatenação com o +.
+`Eu estou apendendo ${S}`	//${} <- O texto deve estar entre crase. (Usa template string)
+
+Contagem de string:
+
+s.length	//Quantas caracteres a string tem.
+
+Formato de texto:
+
+s.toUpperCase()	//Tudo para Maiúsculas.
+
+s.toLowerCase()	//Tudo para minúsculas.
+
+Formato de casas decimais:
+
+Utilize: toFixed()
+Ex:
+
+var n1 = 1550.1
+
+n1.toFixed(2) -> 1550.10
+
+Alterar . para virgula:
+Ex:
+
+var n1 = 1550.1
+
+n1.toFixed(2).replace('.',',') -> 1550,10
+
+Como ver em formato monetario:
+
+n1.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'}) -> R$1,550.10

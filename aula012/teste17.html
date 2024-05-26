@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de nota - Semestral</title>
+</head>
+
+<body>
+    <form action="" method="post">
+        <label for="">Informe a 1º Nota:</label>
+        <input type="number" name="nota1" id="iNota1f" min="0" max="10" placeholder="Digite números.">
+
+        <label for="">Informe a 2º Nota:</label>
+        <input type="number" name="nota2" id="iNota2f" min="0" max="10" placeholder="Digite números.">
+
+        <label for="">Informe a 3º Nota:</label>
+        <input type="number" name="nota3" id="iNota3f" min="0" max="10" placeholder="Digite números.">
+
+        <label for="">Informe a 4º Nota:</label>
+        <input type="number" name="nota4" id="iNota4f" min="0" max="10" placeholder="Digite números.">
+
+        <label for="">Informe a 5º Nota:</label>
+        <input type="number" name="nota5" id="iNota5f" min="0" max="10" placeholder="Digite números.">
+
+        <label for="">Informe a 6º Nota:</label>
+        <input type="number" name="nota6" id="iNota6f" min="0" max="10" placeholder="Digite números.">
+
+        <input type="button" value="Calcular" onclick="calcular()">
+        <input type="reset" value="Limpar">
+    </form>
+
+    <script>
+
+        function calcular() {
+            const nota1 = document.querySelector('input#iNota1f').value
+            const nota2 = document.querySelector('input#iNota2f').value
+            const nota3 = document.querySelector('input#iNota3f').value
+            const nota4 = document.querySelector('input#iNota4f').value
+            const nota5 = document.querySelector('input#iNota5f').value
+            const nota6 = document.querySelector('input#iNota6f').value
+
+            let nota1C = Number(nota1)
+            let nota2C = Number(nota2)
+            let nota3C = Number(nota3)
+            let nota4C = Number(nota4)
+            let nota5C = Number(nota5)
+            let nota6C = Number(nota6)
+
+            let notaFinal = (nota1C + nota2C + nota3C + nota4C + nota5C + nota6C) / 6
+
+            if (notaFinal >= 9 && notaFinal <= 10) {
+                alert(`Parabéns, você recebeu Conceito A e sua média do semestre foi ${notaFinal} - APROVADO!`)
+            } else if (notaFinal >= 7.5 && notaFinal < 9) {
+                alert(`Parabéns, você recebeu Conceito B e sua média do semestre foi ${notaFinal} - APROVADO!`)
+            } else if (notaFinal >= 6 && notaFinal < 7.5) {
+                alert(`Parabéns, você recebeu Conceito C e sua média do semestre foi ${notaFinal} - APROVADO!`)
+            } else if (notaFinal >= 4 && notaFinal < 6) {
+                alert(`Você recebeu Conceito D e sua média do semestre foi ${notaFinal} - REPROVADO!`)
+            } else if (notaFinal >= 0 && notaFinal < 4) {
+                alert(`Você recebeu Conceito E e sua média do semestre foi ${notaFinal} - REPROVADO!`)
+            } else {
+                alert(`Valor não identificado!`)
+            }
+        }
+    </script>
+
+</body>
+
+</html>

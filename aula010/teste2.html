@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora - 1</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            height: 100%;
+            width: 100%;
+        }
+        div > button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <section>
+        <h1>Calculadora - 1</h1>
+    </section>
+    <section>
+        <div>
+            <output id="res">Resultado...</output>
+            <button onclick="calculadora()" id="n0" value="0">0</button>
+            <button onclick="calculadora()" id="n1" value="1">1</button>
+            <button onclick="calculadora()" id="n2" value="2">2</button>
+            <button onclick="calculadora()" id="n3" value="3">3</button>
+            <button onclick="calculadora()" id="n4" value="4">4</button>
+            <button onclick="calculadora()" id="n5" value="5">5</button>
+            <button onclick="calculadora()" id="n6" value="6">6</button>
+            <button onclick="calculadora()" id="n7" value="7">7</button>
+            <button onclick="calculadora()" id="n8" value="8">8</button>
+            <button onclick="calculadora()" id="n9" value="9">9</button>
+        </div>
+
+    </section>
+    <script>
+
+        function calculadora() {
+            var n0 = window.document.querySelector('button#n0')
+            var n1 = window.document.querySelector('button#n1')
+            var n2 = window.document.querySelector('button#n2')
+            var n3 = window.document.querySelector('button#n3')
+            var n4 = window.document.querySelector('button#n4')
+            var n5 = window.document.querySelector('button#n5')
+            var n6 = window.document.querySelector('button#n6')
+            var n7 = window.document.querySelector('button#n7')
+            var n8 = window.document.querySelector('button#n8')
+            var n9 = window.document.querySelector('button#n9')
+
+            var cn0 = Number(n0.value)
+            var cn1 = Number(n1.value)
+            var cn2 = Number(n2.value)
+            var cn3 = Number(n3.value)
+            var cn4 = Number(n4.value)
+            var cn5 = Number(n5.value)
+            var cn6 = Number(n6.value)
+            var cn7 = Number(n7.value)
+            var cn8 = Number(n8.value)
+            var cn9 = Number(n9.value)
+
+            var res = window.document.querySelector('output#res')
+            res.innerHTML = cn1
+        }
+    </script>
+</body>
+
+</html>
