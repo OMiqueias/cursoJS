@@ -1,0 +1,15 @@
+ESTUDAR - JAVASCRIPT
+
+1º Functions
+
+2º Objetos
+
+3º Modularização
+
+4º RegEx (Expressão regular)
+
+5º Json
+
+6º Ajax
+
+7º NodeJs
